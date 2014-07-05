@@ -4,7 +4,7 @@ TextTwitter
 a console based social application for the poor lonely man. 
 
 ## Requeriments
- * python
+ * python3
  
 
 ## Running the application 
