@@ -61,14 +61,22 @@ class testFollowing(unittest.TestCase):
     self.twc = TwConsole()
     self.time_test =  datetime.now()
     
+    ut_time.fastenNow( self.time_test - timedelta(0,2*60))  
+    self.twc.processInput( "Bob -> Damn! We lost!" ) 
+    
+    ut_time.fastenNow( self.time_test - timedelta(0,1*60))
+    self.twc.processInput( "Bob -> Good game though." )
+    
     ut_time.fastenNow( self.time_test - timedelta(0,5*60))  
     self.twc.processInput( "Alice -> I love the weather today" ) 
 	
     ut_time.fastenNow( self.time_test - timedelta(0,2))  
     self.twc.processInput( "Charlie -> I'm in New York today! Anyone want to have a coffee?" )
     self.twc.processInput( "Charlie follows Alice")
+    
+    
 	
-  def test_follow( self):
+  def test_follow_Alice( self):
     ut_time.fastenNow(self.time_test) 	  
     self.assertEqual( 
       self.twc.processInput( "Charlie wall" ), 
@@ -77,6 +85,17 @@ Alice - I love the weather today (5 minutes ago)
 > """
     )     
 
+  def test_follow_Bob( self):
+    self.twc.processInput( "Charlie follows Bob")  
+    ut_time.fastenNow(self.time_test) 	  
+    self.assertEqual( 
+      self.twc.processInput( "Charlie wall" ), 
+"""Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)
+Bob - Good game though. (1 minute ago)
+Bob - Damn! We lost! (2 minutes ago)
+Alice - I love the weather today (5 minutes ago)
+> """
+    )     
 
 
 
