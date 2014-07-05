@@ -9,4 +9,7 @@ class Message:
         
   def timedText(self):
     return "%s (%s)" % (  self._text, time_utils.timeAgo( self._when, time_utils.ut_time.now() )  )	
+    
+  def msgToMix( self):
+    return ( self._when ,  self.timedText())	    
 		 
