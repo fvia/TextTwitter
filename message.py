@@ -1,19 +1,12 @@
-from datetime import datetime
+import time_utils
 
 
 class Message:
-	__init__( self , text ):
-		self._text = text
-        self._when = datetime.now() 
+	
+  def __init__( self , text):
+    self._text = text
+    self._when = time_utils.ut_time.now()
         
-    timedText(self):
-		elapsed_time = datetime.now() - self._when
-		if elapsed_time.seconds < 60:
-			strTime = "(%d seconds ago)"
-		returnValue = self._text
-		
-		
-		
-		#returnValue = returnValue +
-		return 	
+  def timedText(self):
+    return "%s (%s)" % (  self._text, time_utils.timeAgo( self._when, time_utils.ut_time.now() )  )	
 		 
