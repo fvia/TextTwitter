@@ -8,11 +8,11 @@ def timeAgo( time0,time1 ):
 	  1 minute ago
 	  68 minutes ago
 	"""
-	#print ("timeAgo( %s,%s)" % ( str(time0),str(time1) ))
 	elapsed_time = time1 - time0
 	if elapsed_time.seconds < 60:
 	  plural = "s" if elapsed_time.seconds != 1 else ""
 	  return "%d second%s ago" % ( elapsed_time.seconds , plural)
+	  
 	else:
 	  minutes =  elapsed_time.seconds // 60 
 	  plural = "s" if minutes != 1 else ""
@@ -34,8 +34,15 @@ class ut_time:
     else:	
       return datetime.datetime.now()
   
+  
   @staticmethod  
-  def fastenNow(  fixedDatetime ):
+  def fastenNow(  fixedDatetime, deltaMinutes=None,deltaSeconds=None):
+    if deltaMinutes:
+      fixedDatetime+=datetime.timedelta(0,deltaMinutes*60)
+      
+    if deltaSeconds:
+      fixedDatetime+=datetime.timedelta(0,deltaSeconds)
+      
     ut_time.__fastenNow = fixedDatetime   
     		
     		
