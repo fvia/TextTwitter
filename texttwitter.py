@@ -10,21 +10,21 @@ class TextTwitter:
   def processInput( self , strInput  ):
     returnValue = ""  
     if " -> "  in strInput:
-      returnValue = self.posting( strInput )
+      returnValue = self._posts( strInput )
       
     elif " follows " in strInput:
-      returnValue = self.following( strInput )
+      returnValue = self._follows( strInput )
        
     elif " wall" in strInput:
-      returnValue = self.wall( strInput )
+      returnValue = self._wall( strInput )
       		  
     else:
-      returnValue = self.reading( strInput )
+      returnValue = self._reads( strInput )
         
     return returnValue+"> "
     
     
-  def posting(self,strInput):
+  def _posts(self,strInput):
     (username,str_message) = strInput.split( " -> ",2) 
     
     if username not in self._users:
@@ -36,14 +36,14 @@ class TextTwitter:
     return ""
     
     
-  def reading(self,strInput):
+  def _reads(self,strInput):
     if strInput in self._users:
       return self._users[strInput].reading()
     else:		
       return ""  
       
       
-  def following(self,strInput):
+  def _follows(self,strInput):
     (username, user_to_follow) = strInput.split( " follows ",2)
         
     if username not in self._users:
@@ -53,7 +53,7 @@ class TextTwitter:
     return ""
     
     
-  def wall(self,strInput):
+  def _wall(self,strInput):
     (username, _ignore) = strInput.split( " wall",2)  
     if username not in self._users:
       return ""
