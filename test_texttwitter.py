@@ -2,13 +2,13 @@ import unittest
 from datetime import datetime
 
 from time_utils import ut_time
-from twconsole import TwConsole
+from texttwitter import TextTwitter
 
 
 class testPosting( unittest.TestCase ):
 
   def test_post_must_return_prompt(self):
-    twc = TwConsole()
+    twc = TextTwitter()
     self.assertEqual( 
 		twc.processInput( "Alice -> I love the weather today"   ), 
         "> "  
@@ -26,7 +26,7 @@ class testPosting( unittest.TestCase ):
 class testReading(unittest.TestCase):
 
   def setUp(self ):  
-    self.twc = TwConsole()
+    self.twc = TextTwitter()
 
   def test_reading_alice(self):
     time_read_alice =  datetime.now() 
@@ -61,7 +61,7 @@ Damn! We lost! (2 minutes ago)
 
 class testFollowing(unittest.TestCase):
   def setUp(self ):  
-    self.twc = TwConsole()
+    self.twc = TextTwitter()
     self.time_test =  datetime.now()
     
     ut_time.fastenNow( self.time_test ,deltaMinutes = -2)  

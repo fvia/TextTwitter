@@ -2,7 +2,7 @@ from user import User
 from message import Message
 
 
-class TwConsole:
+class TextTwitter:
   def __init__( self):
 	  self._users = dict()	
 	
@@ -75,7 +75,7 @@ class TwConsole:
 
 
 if __name__ == "__main__":
-  twcon = TwConsole()
+  twcon = TextTwitter()
   print ("> ",end='')
   while(True):
     strInput = input("")
