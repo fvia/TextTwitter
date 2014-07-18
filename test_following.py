@@ -1,33 +1,20 @@
-import unittest
-from datetime import datetime
 
-from time_utils import ut_time
-from texttwitter import TextTwitter
+from texttwittertimedtest import TextTwitterTimedTest
 
 
-class testFollowing(unittest.TestCase):
+class testFollowing(TextTwitterTimedTest):
+
   def setUp(self ):  
-    self.twc = TextTwitter()
-    self.time_test =  datetime.now()
-    
-    ut_time.fastenNow( self.time_test ,deltaMinutes = -2)  
-    self.twc.processInput( "Bob -> Damn! We lost!" ) 
-    
-    ut_time.fastenNow( self.time_test , deltaMinutes = -1)
-    self.twc.processInput( "Bob -> Good game though." )
-    
-    ut_time.fastenNow( self.time_test , deltaMinutes= -5)  
-    self.twc.processInput( "Alice -> I love the weather today" ) 
-	
-    ut_time.fastenNow( self.time_test , deltaSeconds= -2)  
-    self.twc.processInput( "Charlie -> I'm in New York today! Anyone want to have a coffee?" )
-    self.twc.processInput( "Charlie follows Alice")
+    self.timedInput( "Bob -> Damn! We lost!",-2)
+    self.timedInput( "Bob -> Good game though.",-1)
+    self.timedInput( "Alice -> I love the weather today",-5)
+    self.timedInput( "Charlie -> I'm in New York today! Anyone want to have a coffee?",deltaSeconds= -2)
+    self.timedInput( "Charlie follows Alice",deltaSeconds= -2)
     
 	
-  def test_follow_Alice( self):
-    ut_time.fastenNow(self.time_test) 	  
+  def test_follow_Alice( self):  
     self.assertEqual( 
-      self.twc.processInput( "Charlie wall" ), 
+      self.timedInput( "Charlie wall" ), 
       "Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n"
       "Alice - I love the weather today (5 minutes ago)\n"
       "> "
@@ -35,10 +22,9 @@ class testFollowing(unittest.TestCase):
 
 
   def test_follow_Bob( self):
-    self.twc.processInput( "Charlie follows Bob")  
-    ut_time.fastenNow(self.time_test) 	  
+    self.timedInput( "Charlie follows Bob")  
     self.assertEqual( 
-      self.twc.processInput( "Charlie wall" ), 
+      self.timedInput( "Charlie wall" ), 
       "Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n"
       "Bob - Good game though. (1 minute ago)\n"
       "Bob - Damn! We lost! (2 minutes ago)\n"

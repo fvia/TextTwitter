@@ -3,6 +3,7 @@ from message import Message
 
 
 class TextTwitter:
+	
   def __init__( self):
 	  self._users = dict()	
 	

@@ -1,24 +1,21 @@
-import unittest
-from datetime import datetime
 
-from time_utils import ut_time
-from texttwitter import TextTwitter
+from texttwittertimedtest import TextTwitterTimedTest
 
 
-class testPosting( unittest.TestCase ):
+class testPosting( TextTwitterTimedTest ):
 
   def test_post_must_return_prompt(self):
-    twc = TextTwitter()
+	  
     self.assertEqual( 
-		twc.processInput( "Alice -> I love the weather today"   ), 
+		self.timedInput( "Alice -> I love the weather today"   ), 
         "> "  
     )     
     self.assertEqual( 
-		twc.processInput( "Bob -> Damn! We lost!" ), 
+		self.timedInput( "Bob -> Damn! We lost!" ), 
         "> "  
     )     
     self.assertEqual( 
-	twc.processInput( "Bob -> Good game though." ), 
+	    self.timedInput( "Bob -> Good game though." ), 
         "> "  
     )     
 
