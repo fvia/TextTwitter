@@ -1,11 +1,11 @@
-import time_utils
+from testabletime import TestableTime
 
 from timeago import timeAgo 
 
 class Formater:
 	
   def timedText(self,message):
-      return "%s (%s)" % (  message.text, timeAgo( message.when, time_utils.ut_time.now() )  )	
+      return "%s (%s)" % (  message.text, timeAgo( message.when, TestableTime.now() )  )	
 	
 	
   def wallFormat( self , messages ):

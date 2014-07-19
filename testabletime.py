@@ -1,19 +1,15 @@
 import datetime
-
    
 
-class ut_time:
-  """
-  as datetime does not allow monkey patching 
-  ( related to optimized, c writed classes )
-  I wrote this class for not using a Inject library
+class TestableTime:
+  """ A time class for testing 
   """
   __fastenNow = None
   
   @staticmethod 
   def now():
-    if ut_time.__fastenNow:
-      return ut_time.__fastenNow
+    if TestableTime.__fastenNow:
+      return TestableTime.__fastenNow
     else:	
       return datetime.datetime.now()
   
@@ -26,7 +22,7 @@ class ut_time:
     if deltaSeconds:
       fixedDatetime+=datetime.timedelta(0,deltaSeconds)
       
-    ut_time.__fastenNow = fixedDatetime   
+    TestableTime.__fastenNow = fixedDatetime   
     		
     		
 	

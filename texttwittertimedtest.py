@@ -1,6 +1,6 @@
 import unittest
 import datetime
-from time_utils import ut_time
+from testabletime import TestableTime
 from texttwitter import TextTwitter
 
 class TextTwitterTimedTest( unittest.TestCase ):
@@ -12,7 +12,7 @@ class TextTwitterTimedTest( unittest.TestCase ):
     
     
   def timedInput( self, strMessage, deltaMinutes=None,deltaSeconds=None  ):
-    ut_time.fastenNow( self._testTime,deltaMinutes,deltaSeconds )
+    TestableTime.fastenNow( self._testTime,deltaMinutes,deltaSeconds )
     return self._textTwitter.processInput( strMessage ) 
 
 

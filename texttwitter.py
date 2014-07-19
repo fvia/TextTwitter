@@ -2,7 +2,7 @@ from user import User
 from message import Message
 from formater import Formater 
 from storage import Storage
-import time_utils
+from testabletime import TestableTime
 
 
 class TextTwitter:
@@ -30,7 +30,7 @@ class TextTwitter:
   def _posts(self,strInput):
     (username,str_message) = strInput.split( " -> ",2) 
 	
-    msg = Message( time_utils.ut_time.now(), str_message, username )
+    msg = Message( TestableTime.now(), str_message, username )
     self._storage.saveMessage(msg)
     
     return ""
