@@ -1,8 +1,9 @@
 from user import User
 from message import Message
-from formater import Formater
-import time_utils 
+from formater import Formater 
 from storage import Storage
+import time_utils
+
 
 class TextTwitter:
 	

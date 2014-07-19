@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 
-from time_utils import timeAgo
+from timeago import timeAgo
 
 class testUtils( unittest.TestCase ):
 	def test_timeAgo(self):
