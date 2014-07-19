@@ -3,7 +3,6 @@ import datetime
 from time_utils import ut_time
 from texttwitter import TextTwitter
 
-
 class TextTwitterTimedTest( unittest.TestCase ):
 	
   def __init__(self, *args, **kwargs):

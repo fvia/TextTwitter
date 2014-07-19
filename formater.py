@@ -7,7 +7,7 @@ class Formater:
 	
 	
   def wallFormat( self , messages ):
-    """ Sort the messages by time, and builds the return string
+    """ Sort the messages by time, and builds the return string for the wall command
     
 	messages is a List of Message	
     """
@@ -22,13 +22,14 @@ class Formater:
 
 
   def readFormat( self , messages ):
-    """ builds the return string
+    """ Sort the messages by time and builds the return string for the read command
     
-    messages is a sorted List of Messages	
+    messages is List of Messages	
     """
+    sorted_messages = sorted( messages, key = lambda  m: m.when , reverse = True) 
     
     strReturn = ""    	  
-    for msg in messages:   
+    for msg in sorted_messages:   
       strReturn += self.timedText(msg)+"\n"
     return strReturn  
 

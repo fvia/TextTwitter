@@ -2,14 +2,13 @@ from user import User
 from message import Message
 from formater import Formater
 import time_utils 
-
+from storage import Storage
 
 class TextTwitter:
 	
   def __init__( self):
-	  self._users = dict()	
-	
-	
+	  self._storage = Storage()
+	  
   def processInput( self , strInput  ):
     returnValue = ""  
     if " -> "  in strInput:
@@ -29,49 +28,38 @@ class TextTwitter:
     
   def _posts(self,strInput):
     (username,str_message) = strInput.split( " -> ",2) 
-    
-    if username not in self._users:
-      self._users[username] = User(username)
 	
     msg = Message( time_utils.ut_time.now(), str_message, username )
-    self._users[username].posting( msg )
+    self._storage.saveMessage(msg)
     
     return ""
     
     
   def _reads(self,strInput):
-	  
-    if strInput in self._users:
-      messages =  self._users[strInput].messages()
-      fmt= Formater()
-      return fmt.readFormat(messages)
-    else:		
-      return ""  
-      
-     
+    messages = self._storage.getMessages([strInput])
+    fmt= Formater()
+    return fmt.readFormat(messages)
       
       
   def _follows(self,strInput):
     (username, user_to_follow) = strInput.split( " follows ",2)
-        
-    if username not in self._users:
-      self._users[username] = User(username)
-      
-    self._users[username].following( user_to_follow )  
+     
+    user = self._storage.loadCreateUser( username )    
+    user.following( user_to_follow )  
     return ""
     
     
   def _wall(self,strInput):
     (username, _ignore) = strInput.split( " wall",2)  
-    if username not in self._users:
+    
+    user = self._storage.loadUser( username )
+    if not user:
       return ""
     
-    users_to_list = self._users[username].followed_users()
+    users_to_list = user.followed_users()
     users_to_list.append( username )
-    
-    all_messages = []
-    for u in users_to_list:
-      all_messages += self._users[u].messages()	     
+  
+    all_messages = self._storage.getMessages( users_to_list )
     
     formater = Formater()
     return formater.wallFormat( all_messages)  
