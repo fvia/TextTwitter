@@ -1,5 +1,7 @@
 from user import User
 from message import Message
+from formater import Formater
+import time_utils 
 
 
 class TextTwitter:
@@ -31,17 +33,22 @@ class TextTwitter:
     if username not in self._users:
       self._users[username] = User(username)
 	
-    msg = Message( str_message )
+    msg = Message( time_utils.ut_time.now(), str_message, username )
     self._users[username].posting( msg )
     
     return ""
     
     
   def _reads(self,strInput):
+	  
     if strInput in self._users:
-      return self._users[strInput].reading()
+      messages =  self._users[strInput].messages()
+      fmt= Formater()
+      return fmt.readFormat(messages)
     else:		
       return ""  
+      
+     
       
       
   def _follows(self,strInput):
@@ -64,16 +71,11 @@ class TextTwitter:
     
     all_messages = []
     for u in users_to_list:
-      all_messages += self._users[u].messagesToMix()	     
+      all_messages += self._users[u].messages()	     
     
-    all_messages = sorted( all_messages, reverse = True) 
-    
-    returnStr = ""
-    for ( ignore, text ) in all_messages: 
-      returnStr += text +"\n"
-      
-    return returnStr 
-
+    formater = Formater()
+    return formater.wallFormat( all_messages)  
+ 
 
 if __name__ == "__main__":
   twcon = TextTwitter()
