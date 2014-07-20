@@ -17,7 +17,6 @@ class testFollowing(TextTwitterTimedTest):
       self.timedInput( "Charlie wall" ), 
       "Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)\n"
       "Alice - I love the weather today (5 minutes ago)\n"
-      "> "
     )     
 
 
@@ -29,6 +28,5 @@ class testFollowing(TextTwitterTimedTest):
       "Bob - Good game though. (1 minute ago)\n"
       "Bob - Damn! We lost! (2 minutes ago)\n"
       "Alice - I love the weather today (5 minutes ago)\n"
-      "> "
     )     
 

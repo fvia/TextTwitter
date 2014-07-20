@@ -33,6 +33,7 @@ class Formater:
     strReturn = ""    	  
     for msg in sorted_messages:   
       strReturn += self.timedText(msg)+"\n"
+      
     return strReturn  
 
 

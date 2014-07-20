@@ -10,7 +10,6 @@ class testReading(TextTwitterTimedTest):
     self.assertEqual( 
       self.timedInput( "Alice" ,0), 
       "I love the weather today (5 minutes ago)\n"
-      "> " 
      )
 	  
  
@@ -22,6 +21,5 @@ class testReading(TextTwitterTimedTest):
 		self.timedInput( "Bob"), 
 	    "Good game though. (1 minute ago)\n"
 	    "Damn! We lost! (2 minutes ago)\n"
-        "> "  
     )     
 
